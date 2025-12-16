@@ -1,0 +1,123 @@
+username: admin
+password: NokiaSros1!
+insecure: true
+log: true
+
+common_sros_subscriptions: &common_sros_subs
+  insecure: true
+  password: NokiaSros1!
+  subscriptions:
+      - sros-if-stats
+      - sros-bgp-stats
+      - sros-service-stats
+      - sros-if-dynamic-delay-stats
+      - sros-route-table-unicast-ipv6-stats
+      - sros-system-performance
+
+targets:
+  R1: &common_sros_subs
+  R2: &common_sros_subs
+  R3-a: &common_sros_subs
+  R4: &common_sros_subs
+  R5-a: &common_sros_subs
+
+subscriptions:
+  ## SROS ###
+  sros-if-stats:
+    paths:
+      - /state/port[port-id=*]/oper-state
+      - /state/port[port-id=*]/ethernet/statistics
+    mode: stream
+    stream-mode: sample
+    sample-interval: 1s
+
+  sros-if-dynamic-delay-stats:
+    paths:
+      - /state/test-oam/link-measurement/router[router-instance=Base]/interface[interface-name=*]/last-reported-delay
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros-system-performance:
+    paths:
+      - /state/system/cpu[sample-period=60]/summary/usage/
+      - /state/system/memory-pools/summary/
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros-service-stats:
+    paths:
+      - /state/service/vpls[service-name=*]/oper-state
+      - /state/service/vprn[service-name=*]/oper-state
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros-route-table-unicast-ipv6-stats:
+    paths:
+      - /state/router[router-name=Base]/route-table/unicast/ipv6
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+  sros-bgp-stats:
+    paths:
+      - /state/router[router-name=Base]/bgp/statistics/peers
+      - /state/router[router-name=Base]/bgp/statistics/routes-per-family/vpn-ipv4/remote-active-routes
+      - /state/router[router-name=Base]/bgp/statistics/routes-per-family/vpn-ipv6/remote-active-routes
+    mode: stream
+    stream-mode: sample
+    sample-interval: 5s
+
+outputs:
+  prom:
+    type: prometheus
+    listen: gnmic:9804
+    event-processors:
+     - trim-prefixes
+     - rename-port-sros
+#     - rename-port-value-sros
+     - oper-state-to-int
+
+processors:
+  trim-prefixes:
+    event-strings:
+      value-names:
+        - "^/state/.*"
+      transforms:
+        - trim-prefix:
+            apply-on: "name"
+            prefix: "/state/"
+
+  oper-state-to-int:
+    event-strings:
+      value-names:
+        - ".*"
+      transforms:
+        - replace:
+            apply-on: "value"
+            old: "up"
+            new: "1"
+        - replace: 
+            apply-on: "value"
+            old: "down"
+            new: "0"   
+  rename-port-sros:
+    event-strings:
+      tag-names:
+        - "^port_port-id"
+      transforms:
+        - replace:
+            apply-on: "name"
+            old: "port_port-id"
+            new: "interface_name"
+  rename-port-value-sros:
+    event-strings:
+      tag-names:
+        - "^interface_name"
+      transforms:
+        - replace:
+            apply-on: "value"
+            old: ".*/c(\\d+)(/\\d+)?"
+            new: "eth$1"

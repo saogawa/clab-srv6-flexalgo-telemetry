@@ -1,0 +1,203 @@
+---
+anchors:
+  thresholds-operstate: &thresholds-operstate
+  - color: red
+    level: 0
+  - color: green
+    level: 1
+  thresholds-traffic: &thresholds-traffic
+  - color: gray
+    level: 0
+  - color: green
+    level: 199999
+  - color: yellow
+    level: 500000
+  - color: orange
+    level: 1000000
+  - color: red
+    level: 5000000
+  label-config: &label-config
+    separator: replace
+    units: bps
+    decimalPoints: 1
+  delay-label-config: &delay-label-config
+    separator: replace
+    units: us
+    decimalPoints: 1
+cellIdPreamble: cell-
+cells:
+  R1:1/1/c1/1:R2:1/1/c7/1:
+    dataRef: oper-state:r1:1/1/c1/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R1:1/1/c1/1:R2:1/1/c7/1:
+    dataRef: r1:1/1/c1/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  delay:R1:1/1/c1/1:R2:1/1/c7/1:
+    dataRef: r1:to-R2:delay
+    label: *delay-label-config
+  R1:1/1/c2/1:R3:1/1/c4/1:
+    dataRef: oper-state:r1:1/1/c2/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R1:1/1/c2/1:R3:1/1/c4/1:
+    dataRef: r1:1/1/c2/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  delay:R1:1/1/c2/1:R3:1/1/c4/1:
+    dataRef: r1:to-R3:delay
+    label: *delay-label-config
+  R2:1/1/c7/1:R1:1/1/c1/1:
+    dataRef: oper-state:r2:1/1/c7/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R2:1/1/c7/1:R1:1/1/c1/1:
+    dataRef: r2:1/1/c7/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  R2:1/1/c5/1:R3:1/1/c1/1:
+    dataRef: oper-state:r2:1/1/c5/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R2:1/1/c5/1:R3:1/1/c1/1:
+    dataRef: r2:1/1/c5/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  delay:R2:1/1/c5/1:R3:1/1/c1/1:
+    dataRef: r2:to-R3:delay
+    label: *delay-label-config
+  R2:1/1/c6/1:R4:1/1/c1/1:
+    dataRef: oper-state:r2:1/1/c6/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R2:1/1/c6/1:R4:1/1/c1/1:
+    dataRef: r2:1/1/c6/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  delay:R2:1/1/c6/1:R4:1/1/c1/1:
+    dataRef: r2:to-R4:delay
+    label: *delay-label-config
+  R3:1/1/c4/1:R1:1/1/c2/1:
+    dataRef: oper-state:r3-a:1/1/c4/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R3:1/1/c4/1:R1:1/1/c2/1:
+    dataRef: r3-a:1/1/c4/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  R3:1/1/c1/1:R2:1/1/c5/1:
+    dataRef: oper-state:r3-a:1/1/c1/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R3:1/1/c1/1:R2:1/1/c5/1:
+    dataRef: r3-a:1/1/c1/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  R3:1/1/c2/1:R5:1/1/c1/1:
+    dataRef: oper-state:r3-a:1/1/c2/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R3:1/1/c2/1:R5:1/1/c1/1:
+    dataRef: r3-a:1/1/c2/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  delay:R3:1/1/c2/1:R5:1/1/c1/1:
+    dataRef: r3-a:to-R5:delay
+    label: *delay-label-config
+  R3:1/1/c3/1:R4:1/1/c3/1:
+    dataRef: oper-state:r3-a:1/1/c3/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R3:1/1/c3/1:R4:1/1/c3/1:
+    dataRef: r3-a:1/1/c3/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  delay:R3:1/1/c3/1:R4:1/1/c3/1:
+    dataRef: r3-a:to-R4:delay
+    label: *delay-label-config
+  R4:1/1/c1/1:R2:1/1/c6/1:
+    dataRef: oper-state:r4:1/1/c1/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R4:1/1/c1/1:R2:1/1/c6/1:
+    dataRef: r4:1/1/c1/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  R4:1/1/c2/1:R5:1/1/c2/1:
+    dataRef: oper-state:r4:1/1/c2/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R4:1/1/c2/1:R5:1/1/c2/1:
+    dataRef: r4:1/1/c2/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  delay:R4:1/1/c2/1:R5:1/1/c2/1:
+    dataRef: r4:to-R5:delay
+    label: *delay-label-config
+  R4:1/1/c3/1:R3:1/1/c3/1:
+    dataRef: oper-state:r4:1/1/c3/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R4:1/1/c3/1:R3:1/1/c3/1:
+    dataRef: r4:1/1/c3/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  R5:1/1/c1/1:R3:1/1/c2/1:
+    dataRef: oper-state:r5-a:1/1/c1/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R5:1/1/c1/1:R3:1/1/c2/1:
+    dataRef: r5-a:1/1/c1/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  R5:1/1/c2/1:R4:1/1/c2/1:
+    dataRef: oper-state:r5-a:1/1/c2/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R5:1/1/c2/1:R4:1/1/c2/1:
+    dataRef: r5-a:1/1/c2/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  R1:1/1/c3/1:client1:eth1:
+    dataRef: oper-state:r1:1/1/c3/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R1:1/1/c3/1:client1:eth1:
+    dataRef: r1:1/1/c3/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic      
+  link_id:client1:eth1:R1:1/1/c3/1:
+    dataRef: r1:1/1/c3/1:in
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  R5:1/1/c3/1:client2:eth1:
+    dataRef: oper-state:r5-a:1/1/c3/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  link_id:R5:1/1/c3/1:client2:eth1:
+    dataRef: r5-a:1/1/c3/1:out
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic
+  link_id:client2:eth1:R5:1/1/c3/1:
+    dataRef: r5-a:1/1/c3/1:in
+    label: *label-config
+    strokeColor:
+      thresholds: *thresholds-traffic

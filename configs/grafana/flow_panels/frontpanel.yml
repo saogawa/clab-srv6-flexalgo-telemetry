@@ -1,0 +1,73 @@
+---
+anchors:
+  thresholds-operstate: &thresholds-operstate
+  - color: red
+    level: 0
+  - color: green
+    level: 1
+cellIdPreamble: cell-
+cells:
+  R1:1/1/c1/1:
+    dataRef: oper-state:r1:1/1/c1/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R1:1/1/c2/1:
+    dataRef: oper-state:r1:1/1/c2/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R1:1/1/c3/1:
+    dataRef: oper-state:r1:1/1/c3/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R2:1/1/c5/1:
+    dataRef: oper-state:r2:1/1/c5/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R2:1/1/c6/1:
+    dataRef: oper-state:r2:1/1/c6/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R2:1/1/c7/1:
+    dataRef: oper-statee:r2:1/1/c7/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R3:1/1/c1/1:
+    dataRef: oper-state:r3-a:1/1/c1/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R3:1/1/c2/1:
+    dataRef: oper-state:r3-a:1/1/c2/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R3:1/1/c3/1:
+    dataRef: oper-state:r3-a:1/1/c3/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R3:1/1/c4/1:
+    dataRef: oper-state:r3-a:1/1/c4/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R4:1/1/c1/1:
+    dataRef: oper-state:r4:1/1/c1/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R4:1/1/c2/1:
+    dataRef: oper-state:r4:1/1/c2/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R4:1/1/c3/1:
+    dataRef: oper-state:r4:1/1/c3/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R5:1/1/c1/1:
+    dataRef: oper-state:r5-a:1/1/c1/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R5:1/1/c2/1:
+    dataRef: oper-state:r5-a:1/1/c2/1
+    fillColor:
+      thresholds: *thresholds-operstate
+  R5:1/1/c3/1:
+    dataRef: oper-state:r5-a:1/1/c3/1
+    fillColor:
+      thresholds: *thresholds-operstate
