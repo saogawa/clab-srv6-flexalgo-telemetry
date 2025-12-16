@@ -9,8 +9,8 @@ topology:
 
   kinds:
     nokia_srsim:
-      image: registry.srlinux.dev/pub/nokia_srsim:25.7.R1
-      license: /opt/nokia/sros/license-25.txt
+      image: ghcr.io/saogawa/nokia_srsim:25.10.r1
+      license: license-25.txt
     linux:
       image: ghcr.io/hellt/network-multitool
 
